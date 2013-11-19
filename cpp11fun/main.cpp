@@ -7,12 +7,34 @@
 //
 
 #include <iostream>
+#include "auto.h"
 
 int main(int argc, const char * argv[])
 {
+    std::cout << "Hello, C++11!\n";
 
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    TestAuto();
+    
     return 0;
 }
 
+
+// TODO
+//
+///////////////////////////// Core Language
+// auto
+// decltype
+// static_assert
+// nullptr
+// range-based for loops
+// override and final
+// strongly typed enums
+// Lambdas
+// rvalue reference and move semantics
+
+///////////////////////////// STL support
+//
+// smart pointers
+// non-member begin() and end()
+//
+//
