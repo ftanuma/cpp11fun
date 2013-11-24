@@ -14,15 +14,14 @@ int main(int argc, const char * argv[])
     std::cout << "Hello, C++11!\n";
 
     TestAuto();
-    
-    return 0;
+	TestDeclType();
+	return 0;
 }
 
 
 // TODO
 //
 ///////////////////////////// Core Language
-// auto
 // decltype
 // static_assert
 // nullptr

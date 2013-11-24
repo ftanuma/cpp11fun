@@ -5,8 +5,8 @@
 //  Created by Fumihiko Tanuma on 11/19/13.
 //  Copyright (c) 2013 ftanuma. All rights reserved.
 //
-#include "auto.h"
 #include <vector>
+#include "decltype.h"
 #include <iostream>
 
 namespace {
@@ -16,7 +16,7 @@ namespace {
     };
 }
 
-static void print(const std::vector<int> &vec)
+void print(const std::vector<int> &vec)
 {
     // following "auto it" should be const iterator.
     for(auto it = begin(vec); it != end(vec); ++it){
@@ -24,7 +24,7 @@ static void print(const std::vector<int> &vec)
     }
 }
 
-void TestAuto()
+void TestDeclType()
 {
     auto i = 0; // signed int
     auto u = 0U;    // unsigned int

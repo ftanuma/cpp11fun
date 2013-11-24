@@ -6,9 +6,9 @@
 //  Copyright (c) 2013 ftanuma. All rights reserved.
 //
 
-#ifndef __cpp11fun__auto__
-#define __cpp11fun__auto__
+#ifndef __cpp11fun__decltype__
+#define __cpp11fun__decltype__
 
-void TestAuto();
+void TestDeclType();
 
-#endif /* defined(__cpp11fun__auto__) */
+#endif /* defined(__cpp11fun__decltype__) */
