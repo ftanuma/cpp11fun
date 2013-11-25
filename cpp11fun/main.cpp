@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include "auto.h"
+#include "decltype.h"
 
 int main(int argc, const char * argv[])
 {

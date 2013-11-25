@@ -10,43 +10,83 @@
 #include <iostream>
 
 namespace {
-    class Foo{
-    public:
-        Foo(){}
-    };
+
+//
+//
+//
+class Person
+{
+public:
+	enum PersonType { ADULT, CHILD, SENIOR };
+
+	void setPersonType (PersonType person_type){
+		_person_type = person_type;
+	}
+
+	PersonType getPersonType ();
+private:
+	PersonType _person_type;
+};
+
+#if 0	// old
+Person::PersonType Person::getPersonType ()
+{
+    return _person_type;
+}
+#else	// with trailing return type
+auto Person::getPersonType () -> PersonType
+{
+    return _person_type;
+}
+#endif
+
+//
+//
+//
+class A{};
+class B{};
+
+class BuilderA
+{
+public:
+	BuilderA(){}
+	A Build(){
+		return A();
+	}
+};
+
+class BuilderB
+{
+public:
+	BuilderB(){}
+	B Build(){
+		return B();
+	}
+};
+
+template <typename Builder>
+auto BuildSomething(Builder builder) -> decltype(builder.Build())
+{
+	return builder.Build();
 }
 
-void print(const std::vector<int> &vec)
-{
-    // following "auto it" should be const iterator.
-    for(auto it = begin(vec); it != end(vec); ++it){
-        std::cout << *it << std::endl;
-    }
 }
 
-void TestDeclType()
+auto TestDeclType() -> void
 {
-    auto i = 0; // signed int
-    auto u = 0U;    // unsigned int
-    auto f = 1.0f;  // float
-    auto d = 2.0;   // double
-    auto foo = new Foo; // Foo
+	// Trailing return type sample.
+	Person person;
+	person.getPersonType();
 
-    printf("%d, %u, %f, %f\n", i, u, f, d);
 
-    // C++ is not dynamic type language.
-    i = f;  // Cast happens.
-//    foo = i;  // Of course NG.
+	// decltype sample.
+	int x = 3;
+	decltype(x) y = x; // same thing as auto y = x;
 
-    delete foo;
+	//decltype(Person::getPersonType()) type1;	// NG
+	decltype(person.getPersonType()) type2 = person.getPersonType();
 
-    //
-    // auto is useful for template iterators.
-    //
-    std::vector<int> vec(10);
-    for(auto it = begin(vec); it != end(vec); ++it){
-        *it = 100;
-    }
-
-    print(vec);
+	auto A = BuildSomething(BuilderA());
+	auto B = BuildSomething(BuilderB());
+	
 }

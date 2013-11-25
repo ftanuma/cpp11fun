@@ -9,6 +9,6 @@
 #ifndef __cpp11fun__decltype__
 #define __cpp11fun__decltype__
 
-void TestDeclType();
+auto TestDeclType() -> void;
 
 #endif /* defined(__cpp11fun__decltype__) */
