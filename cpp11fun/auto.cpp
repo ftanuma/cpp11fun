@@ -16,9 +16,17 @@ namespace {
     };
 }
 
-static void print(const std::vector<int> &vec)
+static void print_const(const std::vector<int> &vec)
 {
     // following "auto it" should be const iterator.
+    for(auto it = begin(vec); it != end(vec); ++it){
+        std::cout << *it << std::endl;
+    }
+}
+
+static void print_nonconst(std::vector<int> &vec)
+{
+    // following "auto it" is not const iterator.
     for(auto it = begin(vec); it != end(vec); ++it){
         std::cout << *it << std::endl;
     }
@@ -48,5 +56,6 @@ void TestAuto()
         *it = 100;
     }
 
-    print(vec);
+    print_const(vec);
+    print_nonconst(vec);
 }
