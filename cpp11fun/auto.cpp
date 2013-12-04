@@ -12,7 +12,23 @@
 namespace {
     class Foo{
     public:
-        Foo(){}
+        Foo()
+		: m_foo(1000)
+		{}
+
+		int & fooRef(){
+			return m_foo;
+		}
+
+		int * fooPointer(){
+			return &m_foo;
+		}
+
+		const int * fooConstPointer() const {
+			return &m_foo;
+		}
+
+		int m_foo;
     };
 }
 
@@ -46,8 +62,6 @@ void TestAuto()
     i = f;  // Cast happens.
 //    foo = i;  // Of course NG.
 
-    delete foo;
-
     //
     // auto is useful for template iterators.
     //
@@ -58,4 +72,35 @@ void TestAuto()
 
     print_const(vec);
     print_nonconst(vec);
+
+	// References
+	//
+	{
+		auto bar = foo->fooRef(); // int: in C++11, auto defaults to being by-value for references.
+		auto& baz = foo->fooRef(); // int&
+
+		const auto cbar = foo->fooRef();	// const int
+		const auto &cbaz = foo->fooRef();	// const int &
+	}
+
+	// Pointerss
+	//
+	{
+		auto bar = foo->fooPointer();	// int*
+		auto *pBar = foo->fooPointer();	// int*
+
+		const auto cbar = foo->fooPointer();	// int * const
+		const auto *cpBar = foo->fooPointer();	// const int*
+	}
+	{
+		auto bar = foo->fooConstPointer();	// cosnt int*
+		auto *pBar = foo->fooConstPointer();	// const int*
+
+		const auto cbar = foo->fooConstPointer();	// const int * const
+		const auto *cpBar = foo->fooConstPointer();	// const int*
+	}
+
+
+
+	delete foo;
 }
