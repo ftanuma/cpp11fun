@@ -11,3 +11,17 @@
 *.lai
 *.la
 *.a
+
+# Visual Studio
+Debug/
+*.tlog
+*.obj
+*.exe
+*.manifest
+*.ilk
+*.sdf
+*.suo
+*.user
+*.ipch
+
+*.bak
